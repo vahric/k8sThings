@@ -1,0 +1,51 @@
+Harbor 
+
+CNCF Project : https://github.com/goharbor/harbor
+
+Kurulum için ön gereksinimler 
+
+https://goharbor.io/docs/2.7.0/install-config/installation-prereqs/
+
+Docker, dockercompose , Openssl
+*Not genel iptables, selinux uyarlamaları yapılabilir.
+Docker kurma dökümanı zaten dockercompose plugin'i içeriyor ve openssl'de çoğu sistemde kurulu geliyor
+https://docs.docker.com/engine/install/centos/
+
+Harbor 2.7 Doc
+https://goharboor.io/docs/2.7.0/
+
+Harbor Offline veya Online kurulum dosyasını indirin
+https://github.com/goharbor/harbor/releases
+
+wget https://github.com/goharbor/harbor/releases/download/v2.7.0/harbor-online-installer-v2.7.0.tgz
+tar -zxvf harbor-online-installer-v2.7.0.tgz
+cd harbor && ls -al 
+cp harbor.yml.tmpl harbor.yml
+
+harbor.yml 'dosyasındaki ilgili alanları güncelleyin
+
+hostname: horhor.dorukcloud.com
+
+# https related config
+https:
+  # https port for harbor, default is 443
+  port: 443
+  # The path of cert and key files for nginx
+  certificate: /root/harbor/dorukcloud.crt
+  private_key: /root/harbor/dorukcloud.key
+
+
+./install.sh
+
+✔ ----Harbor has been installed and started successfully.----
+
+test https://horhor.dorukcloud.com
+Default admin and password Harbor12345
+
+İlk projenizi oluşturun 
+
+Projects >> + NEW PROJECT
+İsim verin, Public yapın, ve kota tanımlayın
+ilk kurulumdaki admin otomatik olarak member olacak, gerekiyor ise ek kullanıcı açın 
+Repo açıp yola devam .... 
+

@@ -1,0 +1,16 @@
+docker
+
+docker ps 
+
+CONTAINER ID   IMAGE                                COMMAND                  CREATED         STATUS                   PORTS                                                                            NAMES
+70215f6d228e   goharbor/harbor-jobservice:v2.7.0    "/harbor/entrypoint.…"   3 minutes ago   Up 3 minutes (healthy)                                                                                    harbor-jobservice
+d8471bce2305   goharbor/nginx-photon:v2.7.0         "nginx -g 'daemon of…"   3 minutes ago   Up 3 minutes (healthy)   0.0.0.0:80->8080/tcp, :::80->8080/tcp, 0.0.0.0:443->8443/tcp, :::443->8443/tcp   nginx
+7de7ab4c0549   goharbor/harbor-core:v2.7.0          "/harbor/entrypoint.…"   3 minutes ago   Up 3 minutes (healthy)                                                                                    harbor-core
+44635cfbaa0e   goharbor/harbor-registryctl:v2.7.0   "/home/harbor/start.…"   3 minutes ago   Up 3 minutes (healthy)                                                                                    registryctl
+c66c5b2356f4   goharbor/registry-photon:v2.7.0      "/home/harbor/entryp…"   3 minutes ago   Up 3 minutes (healthy)                                                                                    registry
+26fdeeb2dc95   goharbor/harbor-db:v2.7.0            "/docker-entrypoint.…"   3 minutes ago   Up 3 minutes (healthy)                                                                                    harbor-db
+6dc792214571   goharbor/harbor-portal:v2.7.0        "nginx -g 'daemon of…"   3 minutes ago   Up 3 minutes (healthy)                                                                                    harbor-portal
+d3aacaf46323   goharbor/redis-photon:v2.7.0         "redis-server /etc/r…"   3 minutes ago   Up 3 minutes (healthy)                                                                                    redis
+b179b8c05158   goharbor/harbor-log:v2.7.0           "/bin/sh -c /usr/loc…"   3 minutes ago   Up 3 minutes (healthy)   127.0.0.1:1514->10514/tcp                                                        harbor-log
+
+kubernetes
