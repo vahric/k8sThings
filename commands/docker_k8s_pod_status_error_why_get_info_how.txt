@@ -1,0 +1,119 @@
+docker
+
+docker inspect 
+
+docker inspect 8218ec9e1487
+[
+    {
+        "Id": "8218ec9e14873ccbca18f9c27ef79fc3e4b44d5b1b0a60eee8ed7fb2dc0c777b",
+        "Created": "2022-12-28T08:27:08.462863613Z",
+        "Path": "nginx",
+        "Args": [
+            "-g",
+            "daemon off;"
+        ],
+        "State": {
+            "Status": "running",
+            "Running": true,
+            "Paused": false,
+            "Restarting": false,
+            "OOMKilled": false,
+            "Dead": false,
+            "Pid": 2934,
+            "ExitCode": 0,
+            "Error": "",
+            "StartedAt": "2022-12-28T08:27:12.040765794Z",
+            "FinishedAt": "0001-01-01T00:00:00Z",
+            "Health": {
+                "Status": "healthy",
+                "FailingStreak": 0,
+                "Log": [
+                    {
+
+
+
+Kubectl Describe Pod is a command that describes any resource in Kubernetes. It is used to show data on a single or even a collection of resources. This command combines a number of API calls to create a thorough description of a resource or set of resources.
+
+k8s
+
+kubectl describe pods vcd-ds-controller-manager-6fc4b5f787-kj76g -ns vcd-ds-system
+
+Name:             vcd-ds-controller-manager-6fc4b5f787-kj76g
+Namespace:        vcd-ds-system
+Priority:         0
+Service Account:  vcd-ds-controller-manager
+Node:             maninblack1-worker-node-pool-1-54cf475976-8vd9l/10.78.78.102
+Start Time:       Thu, 29 Dec 2022 02:10:15 +0300
+Labels:           control-plane=controller-manager
+                  kapp.k14s.io/app=1672269008381709639
+                  kapp.k14s.io/association=v1.289ecf435159c526ad350a53697a837e
+                  pod-template-hash=6fc4b5f787
+Annotations:      kubectl.kubernetes.io/default-container: manager
+Status:           Pending
+IP:               100.96.1.16
+IPs:
+  IP:           100.96.1.16
+Controlled By:  ReplicaSet/vcd-ds-controller-manager-6fc4b5f787
+Containers:
+  manager:
+    Container ID:  
+    Image:         10.110.12.17:80/vahoproject/vcd-data-solutions-package-repo@sha256:174725e482de9c42c8769fc4726968f1e724b172bffe76f6403573e9ceaa74dd
+    Image ID:      
+    Port:          <none>
+    Host Port:     <none>
+    Args:
+      --config=/controller_manager_config.yaml
+      -zap-time-encoding=iso8601
+      -zap-encoder=console
+    State:          Waiting
+      Reason:       ErrImagePull
+    Ready:          False
+    Restart Count:  0
+    Limits:
+      cpu:     4
+      memory:  8Gi
+    Requests:
+      cpu:      250m
+      memory:   512Mi
+    Liveness:   http-get http://:8081/healthz delay=15s timeout=1s period=20s #success=1 #failure=3
+    Readiness:  http-get http://:8081/readyz delay=5s timeout=1s period=10s #success=1 #failure=3
+    Environment:
+      VCD_API_TOKEN:  <set to the key 'apiToken' in secret 'vcd-ds-vcd-creds'>  Optional: false
+    Mounts:
+      /controller_manager_config.yaml from manager-config (rw,path="controller_manager_config.yaml")
+      /etc/ssl/certs/vcd-ca.crt from vcd-ca (rw,path="ca.crt")
+      /var/run/secrets/kubernetes.io/serviceaccount from vcd-ds-controller-manager-token-w4j68 (ro)
+Conditions:
+  Type              Status
+  Initialized       True 
+  Ready             False 
+  ContainersReady   False 
+  PodScheduled      True 
+Volumes:
+  vcd-ca:
+    Type:        Secret (a volume populated by a Secret)
+    SecretName:  vcd-ds-vcd-creds
+    Optional:    false
+  manager-config:
+    Type:      ConfigMap (a volume populated by a ConfigMap)
+    Name:      vcd-ds-manager-config
+    Optional:  false
+  vcd-ds-controller-manager-token-w4j68:
+    Type:        Secret (a volume populated by a Secret)
+    SecretName:  vcd-ds-controller-manager-token-w4j68
+    Optional:    false
+QoS Class:       Burstable
+Node-Selectors:  <none>
+Tolerations:     node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+                 node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+Events:
+  Type     Reason       Age                From               Message
+  ----     ------       ----               ----               -------
+  Normal   Scheduled    35s                default-scheduler  Successfully assigned vcd-ds-system/vcd-ds-controller-manager-6fc4b5f787-kj76g to maninblack1-worker-node-pool-1-54cf475976-8vd9l
+  Warning  FailedMount  34s                kubelet            MountVolume.SetUp failed for volume "vcd-ds-controller-manager-token-w4j68" : failed to sync secret cache: timed out waiting for the condition
+  Warning  FailedMount  34s                kubelet            MountVolume.SetUp failed for volume "vcd-ca" : failed to sync secret cache: timed out waiting for the condition
+  Normal   Pulling      16s (x2 over 32s)  kubelet            Pulling image "10.110.12.17:80/vahoproject/vcd-data-solutions-package-repo@sha256:174725e482de9c42c8769fc4726968f1e724b172bffe76f6403573e9ceaa74dd"
+  Warning  Failed       16s (x2 over 32s)  kubelet            Failed to pull image "10.110.12.17:80/vahoproject/vcd-data-solutions-package-repo@sha256:174725e482de9c42c8769fc4726968f1e724b172bffe76f6403573e9ceaa74dd": rpc error: code = Unknown desc = failed to pull and unpack image "10.110.12.17:80/vahoproject/vcd-data-solutions-package-repo@sha256:174725e482de9c42c8769fc4726968f1e724b172bffe76f6403573e9ceaa74dd": failed to resolve reference "10.110.12.17:80/vahoproject/vcd-data-solutions-package-repo@sha256:174725e482de9c42c8769fc4726968f1e724b172bffe76f6403573e9ceaa74dd": failed to do request: Head "https://10.110.12.17:80/v2/vahoproject/vcd-data-solutions-package-repo/manifests/sha256:174725e482de9c42c8769fc4726968f1e724b172bffe76f6403573e9ceaa74dd": http: server gave HTTP response to HTTPS client
+  Warning  Failed       16s (x2 over 32s)  kubelet            Error: ErrImagePull
+  Normal   BackOff      3s (x2 over 31s)   kubelet            Back-off pulling image "10.110.12.17:80/vahoproject/vcd-data-solutions-package-repo@sha256:174725e482de9c42c8769fc4726968f1e724b172bffe76f6403573e9ceaa74dd"
+  Warning  Failed       3s (x2 over 31s)   kubelet            Error: ImagePullBackOff
