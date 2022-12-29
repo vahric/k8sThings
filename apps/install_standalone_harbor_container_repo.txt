@@ -40,7 +40,7 @@ https:
 ✔ ----Harbor has been installed and started successfully.----
 
 test https://horhor.dorukcloud.com
-Default admin and password Harbor12345
+Default admin and password --> bakınız harbor.yml 
 
 İlk projenizi oluşturun 
 
