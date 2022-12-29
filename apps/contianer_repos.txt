@@ -1,0 +1,8 @@
+Free gibi duruyor
+https://www.jfrog.com/confluence/display/JFROG/JFrog+Container+Registry
+
+Prod için önerilmiyor
+https://medium.com/@srisathish/install-and-configure-local-docker-registry-on-centos-7-ddc2bf6c4e15
+
+https://ghcr.io
+https://github.com/features/packages
