@@ -8,3 +8,9 @@ Link :
 How to install 
 https://carvel.dev/imgpkg/docs/v0.34.0/install/
 
+Bazen ek doğrulama yapmak gerekebilir mesela source repo için bu durumda 
+https://carvel.dev/imgpkg/docs/develop/auth/
+
+export IMGPKG_REGISTRY_HOSTNAME_0=registry.tanzu.vmware.com
+export IMGPKG_REGISTRY_PASSWORD_0=<sifre>
+export IMGPKG_REGISTRY_USERNAME_0=<username>
