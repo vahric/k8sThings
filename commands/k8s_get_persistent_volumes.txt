@@ -1,0 +1,8 @@
+kubectl get pv
+
+NAME                                       CAPACITY   ACCESS MODES   RECLAIM POLICY   STATUS   CLAIM                                                      STORAGECLASS              REASON   AGE
+pvc-d37e4935-f8ee-4d43-aaff-5d1a808154ea   10Gi       RWO            Delete           Bound    vcd-ds-workloads/persistence-rabbitoncluster1-1-server-0   default-storage-class-1            4m52s
+
+Note:
+
+vCD and Tanzu/CSE point of view these are named disks
