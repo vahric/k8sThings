@@ -1,0 +1,38 @@
+Install Minikube and Start Minikube
+
+curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
+sudo install minikube-linux-amd64 /usr/local/bin/minikube
+
+minikube start
+😄  minikube v1.28.0 on Ubuntu 20.04
+✨  Automatically selected the docker driver. Other choices: none, ssh
+📌  Using Docker driver with root privileges
+👍  Starting control plane node minikube in cluster minikube
+🚜  Pulling base image ...
+💾  Downloading Kubernetes v1.25.3 preload ...
+    > preloaded-images-k8s-v18-v1...:  385.44 MiB / 385.44 MiB  100.00% 84.09 M
+    > gcr.io/k8s-minikube/kicbase:  386.27 MiB / 386.27 MiB  100.00% 22.51 MiB 
+    > gcr.io/k8s-minikube/kicbase:  0 B [________________________] ?% ? p/s 18s
+🔥  Creating docker container (CPUs=2, Memory=2200MB) ...
+🐳  Preparing Kubernetes v1.25.3 on Docker 20.10.20 ...
+    ▪ Generating certificates and keys ...
+    ▪ Booting up control plane ...
+    ▪ Configuring RBAC rules ...
+🔎  Verifying Kubernetes components...
+    ▪ Using image gcr.io/k8s-minikube/storage-provisioner:v5
+🌟  Enabled addons: storage-provisioner, default-storageclass
+🏄  Done! kubectl is now configured to use "minikube" cluster and "default" namespace by default
+
+***Eğer docker / podman kurulu değil ise driver hata veriyor .... 
+
+💡  Alternatively you could install one of these drivers:
+    ▪ docker: Not installed: exec: "docker": executable file not found in $PATH
+    ▪ kvm2: Not installed: exec: "virsh": executable file not found in $PATH
+    ▪ podman: Not installed: exec: "podman": executable file not found in $PATH
+    ▪ vmware: Not installed: exec: "docker-machine-driver-vmware": executable file not found in $PATH
+    ▪ virtualbox: Not installed: unable to find VBoxManage in $PATH
+    ▪ qemu2: Not installed: exec: "qemu-system-x86_64": executable file not found in $PATH
+
+❌  Exiting due to DRV_NOT_DETECTED: No possible driver was detected. Try specifying --driver, or see https://minikube.sigs.k8s.io/docs/start/
+
+*https://minikube.sigs.k8s.io/docs/start/

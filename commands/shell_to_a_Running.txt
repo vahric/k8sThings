@@ -1,0 +1,5 @@
+Get a Shell to a Running Container
+
+kubectl exec --stdin --tty podname  -- /bin/bash
+
+Note: The double dash (--) separates the arguments you want to pass to the command from the kubectl arguments.

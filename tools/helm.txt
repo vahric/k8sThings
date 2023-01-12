@@ -1,0 +1,82 @@
+Helm is package manager like apt or yum, it will install app in to k8s
+
+Install Helm on Ubuntu
+
+curl https://baltocdn.com/helm/signing.asc | gpg --dearmor | sudo tee /usr/share/keyrings/helm.gpg > /dev/null
+sudo apt-get install apt-transport-https --yes
+echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/helm.gpg] https://baltocdn.com/helm/stable/debian/ all main" | sudo tee /etc/apt/sources.list.d/helm-stable-debian.list
+sudo apt-get update
+sudo apt-get install helm
+
+https://helm.sh/docs/intro/install/
+
+Add Repo
+
+helm repo add bitnami https://charts.bitnami.com/bitnami
+"bitnami" has been added to your repositories
+
+Search App in repos
+
+helm search repo nginx
+NAME                            	CHART VERSION	APP VERSION	DESCRIPTION                                       
+bitnami/nginx                   	13.2.21      	1.23.3     	NGINX Open Source is a web server that can be a...
+bitnami/nginx-ingress-controller	9.3.25       	1.6.0      	NGINX Ingress Controller is an Ingress controll...
+bitnami/nginx-intel             	2.1.15       	0.4.9      	DEPRECATED NGINX Open Source for Intel is a lig...
+
+
+To See Only Charts
+
+  helm pull bitnami/mysql
+  ls -al
+  tar -zxvf mysql-9.4.6.tgz --dir=/tmp
+  vi /tmp/mysql/Chart.yaml
+
+Install 
+
+helm install benimmysqlim bitnami/mysql 
+NAME: benimmysqlim
+LAST DEPLOYED: Thu Jan 12 12:59:50 2023
+NAMESPACE: default
+STATUS: deployed
+REVISION: 1
+TEST SUITE: None
+NOTES:
+CHART NAME: mysql
+CHART VERSION: 9.4.6
+APP VERSION: 8.0.31
+
+** Please be patient while the chart is being deployed **
+
+Tip:
+
+  Watch the deployment status using the command: kubectl get pods -w --namespace default
+
+Services:
+
+  echo Primary: benimmysqlim.default.svc.cluster.local:3306
+
+Execute the following to get the administrator credentials:
+
+  echo Username: root
+  MYSQL_ROOT_PASSWORD=$(kubectl get secret --namespace default benimmysqlim -o jsonpath="{.data.mysql-root-password}" | base64 -d)
+
+To connect to your database:
+
+  1. Run a pod that you can use as a client:
+
+      kubectl run benimmysqlim-client --rm --tty -i --restart='Never' --image  docker.io/bitnami/mysql:8.0.31-debian-11-r30 --namespace default --env MYSQL_ROOT_PASSWORD=$MYSQL_ROOT_PASSWORD --command -- bash
+
+  2. To connect to primary service (read/write):
+
+      mysql -h benimmysqlim.default.svc.cluster.local -uroot -p"$MYSQL_ROOT_PASSWORD"
+
+
+To Learn
+
+What is Helm Chart
+https://helm.sh/docs/topics/charts/
+
+Vmware
+
+https://tanzu.vmware.com/developer/guides/helm-gs/
+

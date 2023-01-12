@@ -1,0 +1,8 @@
+Install kubectl
+
+Bu döküman sanal bir ubuntu server üzerine "kubectl" indirip , executable yapıp çalıştırmak ile ilgili ..... 
+
+curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+sudo mv kubectl /usr/local/bin/
+chmod 0755 /usr/local/bin/kubectl 
+*Care about related username and group if needed

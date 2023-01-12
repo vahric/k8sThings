@@ -1,0 +1,13 @@
+Birden fazla pod log'una erişmek için
+
+sudo apt install kubetail
+
+examples:
+    kubetail my-pod-v1
+    kubetail my-pod-v1 -c my-container
+    kubetail my-pod-v1 -t int1-context -c my-container
+    kubetail '(service|consumer|thing)' -e regex
+    kubetail -l service=my-service
+    kubetail --selector service=my-service --since 10m
+    kubetail --tail 1
+
