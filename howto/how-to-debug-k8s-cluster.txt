@@ -1,0 +1,33 @@
+Get Versions
+
+kubectl version --short
+Flag --short has been deprecated, and will be removed in the future. The --short output will become the default.
+Client Version: v1.25.3
+Kustomize Version: v4.5.7
+Server Version: v1.22.9+vmware.1
+WARNING: version difference between client (1.25) and server (1.22) exceeds the supported minor version skew of +/-1
+
+Cluster Bilgisi Alma
+*dump (cok cok bilgi)
+
+kubectl cluster-info     
+Kubernetes control plane is running at https://212.2.196.3:6443
+CoreDNS is running at https://212.2.196.3:6443/api/v1/namespaces/kube-system/services/kube-dns:dns/proxy
+
+To further debug and diagnose cluster problems, use 'kubectl cluster-info dump'.
+
+Event'leri Görmek
+
+kubectl create namespace vahric
+kubectl run my-nginx2 --image=nginx -n vahric
+kubectl get events -n vahric
+LAST SEEN   TYPE     REASON      OBJECT          MESSAGE
+15s         Normal   Scheduled   pod/my-nginx2   Successfully assigned vahric/my-nginx2 to hopkop1-worker-node-pool-1-6ddb684996-8k2mh
+15s         Normal   Pulling     pod/my-nginx2   Pulling image "nginx"
+14s         Normal   Pulled      pod/my-nginx2   Successfully pulled image "nginx" in 1.059875303s
+14s         Normal   Created     pod/my-nginx2   Created container my-nginx2
+14s         Normal   Started     pod/my-nginx2   Started container my-nginx2
+
+Links
+
+https://thenewstack.io/living-with-kubernetes-debug-clusters-in-8-commands/

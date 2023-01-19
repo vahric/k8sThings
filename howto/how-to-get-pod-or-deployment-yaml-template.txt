@@ -1,0 +1,110 @@
+Use Visual Studio Code
+Download YAML extention
+Download Kubernetes Templates
+Create a new file with yaml extenstion
+Type k8 or kube then select what you want
+
+
+or maybe not useful or you can peak from out
+
+
+kubectl get pods my-nginx -o yaml 
+
+apiVersion: v1
+kind: Pod
+metadata:
+  creationTimestamp: "2023-01-17T18:15:05Z"
+  labels:
+    run: my-nginx
+  name: my-nginx
+  namespace: default
+  resourceVersion: "32909"
+  uid: 41967b7b-1032-4523-93e0-5bf769c80876
+spec:
+  containers:
+  - image: nginx
+    imagePullPolicy: Always
+    name: my-nginx
+    resources: {}
+    terminationMessagePath: /dev/termination-log
+    terminationMessagePolicy: File
+    volumeMounts:
+    - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+      name: kube-api-access-knk6c
+      readOnly: true
+  dnsPolicy: ClusterFirst
+  enableServiceLinks: true
+  nodeName: hopkop1-worker-node-pool-1-6ddb684996-8k2mh
+  preemptionPolicy: PreemptLowerPriority
+  priority: 0
+  restartPolicy: Always
+  schedulerName: default-scheduler
+  securityContext: {}
+  serviceAccount: default
+  serviceAccountName: default
+  terminationGracePeriodSeconds: 30
+  tolerations:
+  - effect: NoExecute
+    key: node.kubernetes.io/not-ready
+    operator: Exists
+    tolerationSeconds: 300
+  - effect: NoExecute
+    key: node.kubernetes.io/unreachable
+    operator: Exists
+    tolerationSeconds: 300
+  volumes:
+  - name: kube-api-access-knk6c
+    projected:
+      defaultMode: 420
+      sources:
+      - serviceAccountToken:
+          expirationSeconds: 3607
+          path: token
+      - configMap:
+          items:
+          - key: ca.crt
+            path: ca.crt
+          name: kube-root-ca.crt
+      - downwardAPI:
+          items:
+          - fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.namespace
+            path: namespace
+status:
+  conditions:
+  - lastProbeTime: null
+    lastTransitionTime: "2023-01-17T18:15:05Z"
+    status: "True"
+    type: Initialized
+  - lastProbeTime: null
+    lastTransitionTime: "2023-01-17T18:15:13Z"
+    status: "True"
+    type: Ready
+  - lastProbeTime: null
+    lastTransitionTime: "2023-01-17T18:15:13Z"
+    status: "True"
+    type: ContainersReady
+  - lastProbeTime: null
+    lastTransitionTime: "2023-01-17T18:15:05Z"
+    status: "True"
+    type: PodScheduled
+  containerStatuses:
+  - containerID: containerd://316d83d295e048aefbc6a5292843e9de76c4675907b3be5e0859c2fc605e2228
+    image: docker.io/library/nginx:latest
+    imageID: docker.io/library/nginx@sha256:b8f2383a95879e1ae064940d9a200f67a6c79e710ed82ac42263397367e7cc4e
+    lastState: {}
+    name: my-nginx
+    ready: true
+    restartCount: 0
+    started: true
+    state:
+      running:
+        startedAt: "2023-01-17T18:15:13Z"
+  hostIP: 10.0.0.6
+  phase: Running
+  podIP: 100.96.1.16
+  podIPs:
+  - ip: 100.96.1.16
+  qosClass: BestEffort
+  startTime: "2023-01-17T18:15:05Z"

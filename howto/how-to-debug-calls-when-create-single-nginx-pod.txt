@@ -1,0 +1,28 @@
+
+Discover Kubernetes API Calls from kubectl
+
+kubectl run my-nginx2 --image=nginx -v=8 
+I0118 16:23:38.454202   12781 loader.go:374] Config loaded from file:  kubeconfig-hopkop1.txt
+I0118 16:23:38.461656   12781 request.go:1154] Request Body: {"kind":"Pod","apiVersion":"v1","metadata":{"name":"my-nginx2","creationTimestamp":null,"labels":{"run":"my-nginx2"}},"spec":{"containers":[{"name":"my-nginx2","image":"nginx","resources":{}}],"restartPolicy":"Always","dnsPolicy":"ClusterFirst"},"status":{}}
+I0118 16:23:38.462213   12781 round_trippers.go:463] POST https://212.2.196.3:6443/api/v1/namespaces/default/pods?fieldManager=kubectl-run
+I0118 16:23:38.462221   12781 round_trippers.go:469] Request Headers:
+I0118 16:23:38.462226   12781 round_trippers.go:473]     User-Agent: kubectl/v1.25.3 (darwin/arm64) kubernetes/434bfd8
+I0118 16:23:38.462230   12781 round_trippers.go:473]     Accept: application/json, */*
+I0118 16:23:38.462233   12781 round_trippers.go:473]     Content-Type: application/json
+I0118 16:23:38.497823   12781 round_trippers.go:574] Response Status: 201 Created in 35 milliseconds
+I0118 16:23:38.497840   12781 round_trippers.go:577] Response Headers:
+I0118 16:23:38.497844   12781 round_trippers.go:580]     X-Kubernetes-Pf-Prioritylevel-Uid: 58929ec2-1c4b-4e2f-9c01-f0f2c85101cd
+I0118 16:23:38.497849   12781 round_trippers.go:580]     Content-Length: 1991
+I0118 16:23:38.497852   12781 round_trippers.go:580]     Date: Wed, 18 Jan 2023 13:23:38 GMT
+I0118 16:23:38.497855   12781 round_trippers.go:580]     Audit-Id: 4c0b377b-1feb-4779-9a19-c34371fa80d0
+I0118 16:23:38.497859   12781 round_trippers.go:580]     Cache-Control: no-cache, private
+I0118 16:23:38.497862   12781 round_trippers.go:580]     Content-Type: application/json
+I0118 16:23:38.497865   12781 round_trippers.go:580]     X-Kubernetes-Pf-Flowschema-Uid: fc76ea50-7d60-4064-a817-33b59bc7b194
+I0118 16:23:38.497885   12781 request.go:1154] Response Body: {"kind":"Pod","apiVersion":"v1","metadata":{"name":"my-nginx2","namespace":"default","uid":"6f2fd8fa-c88c-45ba-858c-e9c101ad6cf1","resourceVersion":"426015","creationTimestamp":"2023-01-18T13:23:38Z","labels":{"run":"my-nginx2"},"managedFields":[{"manager":"kubectl-run","operation":"Update","apiVersion":"v1","time":"2023-01-18T13:23:38Z","fieldsType":"FieldsV1","fieldsV1":{"f:metadata":{"f:labels":{".":{},"f:run":{}}},"f:spec":{"f:containers":{"k:{\"name\":\"my-nginx2\"}":{".":{},"f:image":{},"f:imagePullPolicy":{},"f:name":{},"f:resources":{},"f:terminationMessagePath":{},"f:terminationMessagePolicy":{}}},"f:dnsPolicy":{},"f:enableServiceLinks":{},"f:restartPolicy":{},"f:schedulerName":{},"f:securityContext":{},"f:terminationGracePeriodSeconds":{}}}}]},"spec":{"volumes":[{"name":"kube-api-access-hh2jv","projected":{"sources":[{"serviceAccountToken":{"expirationSeconds":3607,"path":"token"}},{"configMap":{"name":"kube-root-ca.crt","items":[{"key":"ca.crt","path":"ca.crt"}]}},{"downwardAPI":{"items":[{"path":" [truncated 967 chars]
+pod/my-nginx2 created
+
+Link
+https://trstringer.com/kubernetes-api-call-from-kubectl/
+
+What happen when kubectl run
+https://faun.pub/what-happens-when-kubectl-run-is-executed-fb5ea9eb42b8

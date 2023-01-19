@@ -1,0 +1,1 @@
+https://medium.com/devopsturkiye/choose-your-local-kubernetes-minikube-kind-k3s-c3ea92cbc683

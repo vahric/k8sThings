@@ -1,0 +1,5 @@
+To Run
+
+kubectl run my-nginx --image=nginx
+
+

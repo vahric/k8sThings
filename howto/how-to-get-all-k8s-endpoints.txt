@@ -1,0 +1,17 @@
+
+kubectl get endpoints -A
+
+NAMESPACE                           NAME                                              ENDPOINTS                                               AGE
+capi-kubeadm-bootstrap-system       capi-kubeadm-bootstrap-webhook-service            100.96.1.7:9443                                         65m
+capi-kubeadm-control-plane-system   capi-kubeadm-control-plane-webhook-service        100.96.1.8:9443                                         65m
+capi-system                         capi-webhook-service                              100.96.1.6:9443                                         65m
+capvcd-system                       capvcd-webhook-service                            100.96.1.9:9443                                         65m
+cert-manager                        cert-manager                                      100.96.1.4:9402                                         65m
+cert-manager                        cert-manager-webhook                              100.96.1.5:10250                                        65m
+default                             kubernetes                                        10.0.0.5:6443                                           69m
+kube-system                         antrea                                            10.0.0.6:10349                                          69m
+kube-system                         kube-dns                                          100.96.0.2:53,100.96.0.3:53,100.96.0.2:53 + 3 more...   69m
+kube-system                         metrics-server                                    100.96.1.13:4443                                        59m
+rdeprojector-system                 rdeprojector-controller-manager-metrics-service   <none>                                                  64m
+tkg-system                          packaging-api                                     10.0.0.6:10100                                          64m
+tkg-system                          tanzu-featuregates-webhook-service                100.96.1.15:9443                                        58m

@@ -1,0 +1,297 @@
+API Overview
+https://kubernetes.io/docs/reference/using-api/
+API Concept
+https://kubernetes.io/docs/reference/using-api/api-concepts/
+
+
+kubectl api-resources        
+
+NAME                              SHORTNAMES   APIVERSION                                           NAMESPACED   KIND
+bindings                                       v1                                                   true         Binding
+componentstatuses                 cs           v1                                                   false        ComponentStatus
+configmaps                        cm           v1                                                   true         ConfigMap
+endpoints                         ep           v1                                                   true         Endpoints
+events                            ev           v1                                                   true         Event
+limitranges                       limits       v1                                                   true         LimitRange
+namespaces                        ns           v1                                                   false        Namespace
+nodes                             no           v1                                                   false        Node
+persistentvolumeclaims            pvc          v1                                                   true         PersistentVolumeClaim
+persistentvolumes                 pv           v1                                                   false        PersistentVolume
+pods                              po           v1                                                   true         Pod
+podtemplates                                   v1                                                   true         PodTemplate
+replicationcontrollers            rc           v1                                                   true         ReplicationController
+resourcequotas                    quota        v1                                                   true         ResourceQuota
+secrets                                        v1                                                   true         Secret
+serviceaccounts                   sa           v1                                                   true         ServiceAccount
+services                          svc          v1                                                   true         Service
+challenges                                     acme.cert-manager.io/v1                              true         Challenge
+orders                                         acme.cert-manager.io/v1                              true         Order
+clusterresourcesetbindings                     addons.cluster.x-k8s.io/v1beta1                      true         ClusterResourceSetBinding
+clusterresourcesets                            addons.cluster.x-k8s.io/v1beta1                      true         ClusterResourceSet
+mutatingwebhookconfigurations                  admissionregistration.k8s.io/v1                      false        MutatingWebhookConfiguration
+validatingwebhookconfigurations                admissionregistration.k8s.io/v1                      false        ValidatingWebhookConfiguration
+customresourcedefinitions         crd,crds     apiextensions.k8s.io/v1                              false        CustomResourceDefinition
+apiservices                                    apiregistration.k8s.io/v1                            false        APIService
+controllerrevisions                            apps/v1                                              true         ControllerRevision
+daemonsets                        ds           apps/v1                                              true         DaemonSet
+deployments                       deploy       apps/v1                                              true         Deployment
+replicasets                       rs           apps/v1                                              true         ReplicaSet
+statefulsets                      sts          apps/v1                                              true         StatefulSet
+tokenreviews                                   authentication.k8s.io/v1                             false        TokenReview
+localsubjectaccessreviews                      authorization.k8s.io/v1                              true         LocalSubjectAccessReview
+selfsubjectaccessreviews                       authorization.k8s.io/v1                              false        SelfSubjectAccessReview
+selfsubjectrulesreviews                        authorization.k8s.io/v1                              false        SelfSubjectRulesReview
+subjectaccessreviews                           authorization.k8s.io/v1                              false        SubjectAccessReview
+horizontalpodautoscalers          hpa          autoscaling/v1                                       true         HorizontalPodAutoscaler
+cronjobs                          cj           batch/v1                                             true         CronJob
+jobs                                           batch/v1                                             true         Job
+kubeadmconfigs                                 bootstrap.cluster.x-k8s.io/v1beta1                   true         KubeadmConfig
+kubeadmconfigtemplates                         bootstrap.cluster.x-k8s.io/v1beta1                   true         KubeadmConfigTemplate
+rdeprojectors                                  capvcd.cloud-director.vmware.com/v1alpha1            true         RDEProjector
+certificaterequests               cr,crs       cert-manager.io/v1                                   true         CertificateRequest
+certificates                      cert,certs   cert-manager.io/v1                                   true         Certificate
+clusterissuers                                 cert-manager.io/v1                                   false        ClusterIssuer
+issuers                                        cert-manager.io/v1                                   true         Issuer
+certificatesigningrequests        csr          certificates.k8s.io/v1                               false        CertificateSigningRequest
+cliplugins                                     cli.tanzu.vmware.com/v1alpha1                        true         CLIPlugin
+clusterclasses                    cc           cluster.x-k8s.io/v1beta1                             true         ClusterClass
+clusters                          cl           cluster.x-k8s.io/v1beta1                             true         Cluster
+machinedeployments                md           cluster.x-k8s.io/v1beta1                             true         MachineDeployment
+machinehealthchecks               mhc,mhcs     cluster.x-k8s.io/v1beta1                             true         MachineHealthCheck
+machinepools                      mp           cluster.x-k8s.io/v1beta1                             true         MachinePool
+machines                          ma           cluster.x-k8s.io/v1beta1                             true         Machine
+machinesets                       ms           cluster.x-k8s.io/v1beta1                             true         MachineSet
+providers                                      clusterctl.cluster.x-k8s.io/v1alpha3                 true         Provider
+antreaagentinfos                  laai         clusterinformation.antrea.tanzu.vmware.com/v1beta1   false        AntreaAgentInfo
+antreacontrollerinfos             laci         clusterinformation.antrea.tanzu.vmware.com/v1beta1   false        AntreaControllerInfo
+featuregates                                   config.tanzu.vmware.com/v1alpha1                     false        FeatureGate
+features                                       config.tanzu.vmware.com/v1alpha1                     false        Feature
+addressgroups                                  controlplane.antrea.io/v1beta2                       false        AddressGroup
+appliedtogroups                                controlplane.antrea.io/v1beta2                       false        AppliedToGroup
+clustergroupmembers                            controlplane.antrea.io/v1beta2                       false        ClusterGroupMembers
+egressgroups                                   controlplane.antrea.io/v1beta2                       false        EgressGroup
+groupassociations                              controlplane.antrea.io/v1beta2                       true         GroupAssociation
+networkpolicies                                controlplane.antrea.io/v1beta2                       false        NetworkPolicy
+nodestatssummaries                             controlplane.antrea.io/v1beta2                       false        NodeStatsSummary
+addressgroups                                  controlplane.antrea.tanzu.vmware.com/v1beta2         false        AddressGroup
+appliedtogroups                                controlplane.antrea.tanzu.vmware.com/v1beta2         false        AppliedToGroup
+clustergroupmembers                            controlplane.antrea.tanzu.vmware.com/v1beta2         false        ClusterGroupMembers
+groupassociations                              controlplane.antrea.tanzu.vmware.com/v1beta2         true         GroupAssociation
+networkpolicies                                controlplane.antrea.tanzu.vmware.com/v1beta2         false        NetworkPolicy
+nodestatssummaries                             controlplane.antrea.tanzu.vmware.com/v1beta2         false        NodeStatsSummary
+kubeadmcontrolplanes              kcp          controlplane.cluster.x-k8s.io/v1beta1                true         KubeadmControlPlane
+kubeadmcontrolplanetemplates                   controlplane.cluster.x-k8s.io/v1beta1                true         KubeadmControlPlaneTemplate
+leases                                         coordination.k8s.io/v1                               true         Lease
+clustergroups                     lcg          core.antrea.tanzu.vmware.com/v1alpha2                false        ClusterGroup
+externalentities                  lee          core.antrea.tanzu.vmware.com/v1alpha2                true         ExternalEntity
+antreaagentinfos                  aai          crd.antrea.io/v1beta1                                false        AntreaAgentInfo
+antreacontrollerinfos             aci          crd.antrea.io/v1beta1                                false        AntreaControllerInfo
+clustergroups                     cg           crd.antrea.io/v1alpha3                               false        ClusterGroup
+clusternetworkpolicies            acnp         crd.antrea.io/v1alpha1                               false        ClusterNetworkPolicy
+egresses                          eg           crd.antrea.io/v1alpha2                               false        Egress
+externalentities                  ee           crd.antrea.io/v1alpha2                               true         ExternalEntity
+externalippools                   eip          crd.antrea.io/v1alpha2                               false        ExternalIPPool
+networkpolicies                   anp          crd.antrea.io/v1alpha1                               true         NetworkPolicy
+tiers                             tr           crd.antrea.io/v1alpha1                               false        Tier
+traceflows                        tf           crd.antrea.io/v1alpha1                               false        Traceflow
+tierentitlementbindings           teb          crd.antrea.tanzu.vmware.com/v1alpha1                 false        TierEntitlementBinding
+tierentitlements                  te           crd.antrea.tanzu.vmware.com/v1alpha1                 false        TierEntitlement
+packagemetadatas                  pkgm         data.packaging.carvel.dev/v1alpha1                   true         PackageMetadata
+packages                          pkg          data.packaging.carvel.dev/v1alpha1                   true         Package
+endpointslices                                 discovery.k8s.io/v1                                  true         EndpointSlice
+events                            ev           events.k8s.io/v1                                     true         Event
+flowschemas                                    flowcontrol.apiserver.k8s.io/v1beta1                 false        FlowSchema
+prioritylevelconfigurations                    flowcontrol.apiserver.k8s.io/v1beta1                 false        PriorityLevelConfiguration
+vcdclusters                                    infrastructure.cluster.x-k8s.io/v1beta1              true         VCDCluster
+vcdmachines                                    infrastructure.cluster.x-k8s.io/v1beta1              true         VCDMachine
+vcdmachinetemplates                            infrastructure.cluster.x-k8s.io/v1beta1              true         VCDMachineTemplate
+internalpackagemetadatas                       internal.packaging.carvel.dev/v1alpha1               true         InternalPackageMetadata
+internalpackages                               internal.packaging.carvel.dev/v1alpha1               true         InternalPackage
+apps                                           kappctrl.k14s.io/v1alpha1                            true         App
+nodes                                          metrics.k8s.io/v1beta1                               false        NodeMetrics
+pods                                           metrics.k8s.io/v1beta1                               true         PodMetrics
+ingressclasses                                 networking.k8s.io/v1                                 false        IngressClass
+ingresses                         ing          networking.k8s.io/v1                                 true         Ingress
+networkpolicies                   netpol       networking.k8s.io/v1                                 true         NetworkPolicy
+runtimeclasses                                 node.k8s.io/v1                                       false        RuntimeClass
+traceflows                        ltf          ops.antrea.tanzu.vmware.com/v1alpha1                 false        Traceflow
+packageinstalls                   pkgi         packaging.carvel.dev/v1alpha1                        true         PackageInstall
+packagerepositories               pkgr         packaging.carvel.dev/v1alpha1                        true         PackageRepository
+poddisruptionbudgets              pdb          policy/v1                                            true         PodDisruptionBudget
+podsecuritypolicies               psp          policy/v1beta1                                       false        PodSecurityPolicy
+clusterrolebindings                            rbac.authorization.k8s.io/v1                         false        ClusterRoleBinding
+clusterroles                                   rbac.authorization.k8s.io/v1                         false        ClusterRole
+rolebindings                                   rbac.authorization.k8s.io/v1                         true         RoleBinding
+roles                                          rbac.authorization.k8s.io/v1                         true         Role
+capabilities                                   run.tanzu.vmware.com/v1alpha1                        true         Capability
+tanzukubernetesreleases           tkr          run.tanzu.vmware.com/v1alpha1                        false        TanzuKubernetesRelease
+priorityclasses                   pc           scheduling.k8s.io/v1                                 false        PriorityClass
+secretexports                                  secretgen.carvel.dev/v1alpha1                        true         SecretExport
+secretimports                                  secretgen.carvel.dev/v1alpha1                        true         SecretImport
+certificates                                   secretgen.k14s.io/v1alpha1                           true         Certificate
+passwords                                      secretgen.k14s.io/v1alpha1                           true         Password
+rsakeys                                        secretgen.k14s.io/v1alpha1                           true         RSAKey
+sshkeys                                        secretgen.k14s.io/v1alpha1                           true         SSHKey
+clusternetworkpolicies            lacnp        security.antrea.tanzu.vmware.com/v1alpha1            false        ClusterNetworkPolicy
+networkpolicies                   lanp         security.antrea.tanzu.vmware.com/v1alpha1            true         NetworkPolicy
+tiers                             ltr          security.antrea.tanzu.vmware.com/v1alpha1            false        Tier
+antreaclusternetworkpolicystats                stats.antrea.io/v1alpha1                             false        AntreaClusterNetworkPolicyStats
+antreanetworkpolicystats                       stats.antrea.io/v1alpha1                             true         AntreaNetworkPolicyStats
+networkpolicystats                             stats.antrea.io/v1alpha1                             true         NetworkPolicyStats
+antreaclusternetworkpolicystats                stats.antrea.tanzu.vmware.com/v1alpha1               false        AntreaClusterNetworkPolicyStats
+antreanetworkpolicystats                       stats.antrea.tanzu.vmware.com/v1alpha1               true         AntreaNetworkPolicyStats
+networkpolicystats                             stats.antrea.tanzu.vmware.com/v1alpha1               true         NetworkPolicyStats
+csidrivers                                     storage.k8s.io/v1                                    false        CSIDriver
+csinodes                                       storage.k8s.io/v1                                    false        CSINode
+csistoragecapacities                           storage.k8s.io/v1beta1                               true         CSIStorageCapacity
+storageclasses                    sc           storage.k8s.io/v1                                    false        StorageClass
+volumeattachments                              storage.k8s.io/v1                                    false        VolumeAttachment
+controllerinfos                                system.antrea.io/v1beta1                             false        AntreaControllerInfo
+supportbundles                                 system.antrea.io/v1beta1                             false        SupportBundle
+controllerinfos                                system.antrea.tanzu.vmware.com/v1beta1               false        AntreaControllerInfo
+supportbundles                                 system.antrea.tanzu.vmware.com/v1beta1               false        SupportBundle
+vahricmuhtaryan@Vahrics-MacBook-Pro-2 ~ % kubectl api-resources 
+NAME                              SHORTNAMES   APIVERSION                                           NAMESPACED   KIND
+bindings                                       v1                                                   true         Binding
+componentstatuses                 cs           v1                                                   false        ComponentStatus
+configmaps                        cm           v1                                                   true         ConfigMap
+endpoints                         ep           v1                                                   true         Endpoints
+events                            ev           v1                                                   true         Event
+limitranges                       limits       v1                                                   true         LimitRange
+namespaces                        ns           v1                                                   false        Namespace
+nodes                             no           v1                                                   false        Node
+persistentvolumeclaims            pvc          v1                                                   true         PersistentVolumeClaim
+persistentvolumes                 pv           v1                                                   false        PersistentVolume
+pods                              po           v1                                                   true         Pod
+podtemplates                                   v1                                                   true         PodTemplate
+replicationcontrollers            rc           v1                                                   true         ReplicationController
+resourcequotas                    quota        v1                                                   true         ResourceQuota
+secrets                                        v1                                                   true         Secret
+serviceaccounts                   sa           v1                                                   true         ServiceAccount
+services                          svc          v1                                                   true         Service
+challenges                                     acme.cert-manager.io/v1                              true         Challenge
+orders                                         acme.cert-manager.io/v1                              true         Order
+clusterresourcesetbindings                     addons.cluster.x-k8s.io/v1beta1                      true         ClusterResourceSetBinding
+clusterresourcesets                            addons.cluster.x-k8s.io/v1beta1                      true         ClusterResourceSet
+mutatingwebhookconfigurations                  admissionregistration.k8s.io/v1                      false        MutatingWebhookConfiguration
+validatingwebhookconfigurations                admissionregistration.k8s.io/v1                      false        ValidatingWebhookConfiguration
+customresourcedefinitions         crd,crds     apiextensions.k8s.io/v1                              false        CustomResourceDefinition
+apiservices                                    apiregistration.k8s.io/v1                            false        APIService
+controllerrevisions                            apps/v1                                              true         ControllerRevision
+daemonsets                        ds           apps/v1                                              true         DaemonSet
+deployments                       deploy       apps/v1                                              true         Deployment
+replicasets                       rs           apps/v1                                              true         ReplicaSet
+statefulsets                      sts          apps/v1                                              true         StatefulSet
+tokenreviews                                   authentication.k8s.io/v1                             false        TokenReview
+localsubjectaccessreviews                      authorization.k8s.io/v1                              true         LocalSubjectAccessReview
+selfsubjectaccessreviews                       authorization.k8s.io/v1                              false        SelfSubjectAccessReview
+selfsubjectrulesreviews                        authorization.k8s.io/v1                              false        SelfSubjectRulesReview
+subjectaccessreviews                           authorization.k8s.io/v1                              false        SubjectAccessReview
+horizontalpodautoscalers          hpa          autoscaling/v1                                       true         HorizontalPodAutoscaler
+cronjobs                          cj           batch/v1                                             true         CronJob
+jobs                                           batch/v1                                             true         Job
+kubeadmconfigs                                 bootstrap.cluster.x-k8s.io/v1beta1                   true         KubeadmConfig
+kubeadmconfigtemplates                         bootstrap.cluster.x-k8s.io/v1beta1                   true         KubeadmConfigTemplate
+rdeprojectors                                  capvcd.cloud-director.vmware.com/v1alpha1            true         RDEProjector
+certificaterequests               cr,crs       cert-manager.io/v1                                   true         CertificateRequest
+certificates                      cert,certs   cert-manager.io/v1                                   true         Certificate
+clusterissuers                                 cert-manager.io/v1                                   false        ClusterIssuer
+issuers                                        cert-manager.io/v1                                   true         Issuer
+certificatesigningrequests        csr          certificates.k8s.io/v1                               false        CertificateSigningRequest
+cliplugins                                     cli.tanzu.vmware.com/v1alpha1                        true         CLIPlugin
+clusterclasses                    cc           cluster.x-k8s.io/v1beta1                             true         ClusterClass
+clusters                          cl           cluster.x-k8s.io/v1beta1                             true         Cluster
+machinedeployments                md           cluster.x-k8s.io/v1beta1                             true         MachineDeployment
+machinehealthchecks               mhc,mhcs     cluster.x-k8s.io/v1beta1                             true         MachineHealthCheck
+machinepools                      mp           cluster.x-k8s.io/v1beta1                             true         MachinePool
+machines                          ma           cluster.x-k8s.io/v1beta1                             true         Machine
+machinesets                       ms           cluster.x-k8s.io/v1beta1                             true         MachineSet
+providers                                      clusterctl.cluster.x-k8s.io/v1alpha3                 true         Provider
+antreaagentinfos                  laai         clusterinformation.antrea.tanzu.vmware.com/v1beta1   false        AntreaAgentInfo
+antreacontrollerinfos             laci         clusterinformation.antrea.tanzu.vmware.com/v1beta1   false        AntreaControllerInfo
+featuregates                                   config.tanzu.vmware.com/v1alpha1                     false        FeatureGate
+features                                       config.tanzu.vmware.com/v1alpha1                     false        Feature
+addressgroups                                  controlplane.antrea.io/v1beta2                       false        AddressGroup
+appliedtogroups                                controlplane.antrea.io/v1beta2                       false        AppliedToGroup
+clustergroupmembers                            controlplane.antrea.io/v1beta2                       false        ClusterGroupMembers
+egressgroups                                   controlplane.antrea.io/v1beta2                       false        EgressGroup
+groupassociations                              controlplane.antrea.io/v1beta2                       true         GroupAssociation
+networkpolicies                                controlplane.antrea.io/v1beta2                       false        NetworkPolicy
+nodestatssummaries                             controlplane.antrea.io/v1beta2                       false        NodeStatsSummary
+addressgroups                                  controlplane.antrea.tanzu.vmware.com/v1beta2         false        AddressGroup
+appliedtogroups                                controlplane.antrea.tanzu.vmware.com/v1beta2         false        AppliedToGroup
+clustergroupmembers                            controlplane.antrea.tanzu.vmware.com/v1beta2         false        ClusterGroupMembers
+groupassociations                              controlplane.antrea.tanzu.vmware.com/v1beta2         true         GroupAssociation
+networkpolicies                                controlplane.antrea.tanzu.vmware.com/v1beta2         false        NetworkPolicy
+nodestatssummaries                             controlplane.antrea.tanzu.vmware.com/v1beta2         false        NodeStatsSummary
+kubeadmcontrolplanes              kcp          controlplane.cluster.x-k8s.io/v1beta1                true         KubeadmControlPlane
+kubeadmcontrolplanetemplates                   controlplane.cluster.x-k8s.io/v1beta1                true         KubeadmControlPlaneTemplate
+leases                                         coordination.k8s.io/v1                               true         Lease
+clustergroups                     lcg          core.antrea.tanzu.vmware.com/v1alpha2                false        ClusterGroup
+externalentities                  lee          core.antrea.tanzu.vmware.com/v1alpha2                true         ExternalEntity
+antreaagentinfos                  aai          crd.antrea.io/v1beta1                                false        AntreaAgentInfo
+antreacontrollerinfos             aci          crd.antrea.io/v1beta1                                false        AntreaControllerInfo
+clustergroups                     cg           crd.antrea.io/v1alpha3                               false        ClusterGroup
+clusternetworkpolicies            acnp         crd.antrea.io/v1alpha1                               false        ClusterNetworkPolicy
+egresses                          eg           crd.antrea.io/v1alpha2                               false        Egress
+externalentities                  ee           crd.antrea.io/v1alpha2                               true         ExternalEntity
+externalippools                   eip          crd.antrea.io/v1alpha2                               false        ExternalIPPool
+networkpolicies                   anp          crd.antrea.io/v1alpha1                               true         NetworkPolicy
+tiers                             tr           crd.antrea.io/v1alpha1                               false        Tier
+traceflows                        tf           crd.antrea.io/v1alpha1                               false        Traceflow
+tierentitlementbindings           teb          crd.antrea.tanzu.vmware.com/v1alpha1                 false        TierEntitlementBinding
+tierentitlements                  te           crd.antrea.tanzu.vmware.com/v1alpha1                 false        TierEntitlement
+packagemetadatas                  pkgm         data.packaging.carvel.dev/v1alpha1                   true         PackageMetadata
+packages                          pkg          data.packaging.carvel.dev/v1alpha1                   true         Package
+endpointslices                                 discovery.k8s.io/v1                                  true         EndpointSlice
+events                            ev           events.k8s.io/v1                                     true         Event
+flowschemas                                    flowcontrol.apiserver.k8s.io/v1beta1                 false        FlowSchema
+prioritylevelconfigurations                    flowcontrol.apiserver.k8s.io/v1beta1                 false        PriorityLevelConfiguration
+vcdclusters                                    infrastructure.cluster.x-k8s.io/v1beta1              true         VCDCluster
+vcdmachines                                    infrastructure.cluster.x-k8s.io/v1beta1              true         VCDMachine
+vcdmachinetemplates                            infrastructure.cluster.x-k8s.io/v1beta1              true         VCDMachineTemplate
+internalpackagemetadatas                       internal.packaging.carvel.dev/v1alpha1               true         InternalPackageMetadata
+internalpackages                               internal.packaging.carvel.dev/v1alpha1               true         InternalPackage
+apps                                           kappctrl.k14s.io/v1alpha1                            true         App
+nodes                                          metrics.k8s.io/v1beta1                               false        NodeMetrics
+pods                                           metrics.k8s.io/v1beta1                               true         PodMetrics
+ingressclasses                                 networking.k8s.io/v1                                 false        IngressClass
+ingresses                         ing          networking.k8s.io/v1                                 true         Ingress
+networkpolicies                   netpol       networking.k8s.io/v1                                 true         NetworkPolicy
+runtimeclasses                                 node.k8s.io/v1                                       false        RuntimeClass
+traceflows                        ltf          ops.antrea.tanzu.vmware.com/v1alpha1                 false        Traceflow
+packageinstalls                   pkgi         packaging.carvel.dev/v1alpha1                        true         PackageInstall
+packagerepositories               pkgr         packaging.carvel.dev/v1alpha1                        true         PackageRepository
+poddisruptionbudgets              pdb          policy/v1                                            true         PodDisruptionBudget
+podsecuritypolicies               psp          policy/v1beta1                                       false        PodSecurityPolicy
+clusterrolebindings                            rbac.authorization.k8s.io/v1                         false        ClusterRoleBinding
+clusterroles                                   rbac.authorization.k8s.io/v1                         false        ClusterRole
+rolebindings                                   rbac.authorization.k8s.io/v1                         true         RoleBinding
+roles                                          rbac.authorization.k8s.io/v1                         true         Role
+capabilities                                   run.tanzu.vmware.com/v1alpha1                        true         Capability
+tanzukubernetesreleases           tkr          run.tanzu.vmware.com/v1alpha1                        false        TanzuKubernetesRelease
+priorityclasses                   pc           scheduling.k8s.io/v1                                 false        PriorityClass
+secretexports                                  secretgen.carvel.dev/v1alpha1                        true         SecretExport
+secretimports                                  secretgen.carvel.dev/v1alpha1                        true         SecretImport
+certificates                                   secretgen.k14s.io/v1alpha1                           true         Certificate
+passwords                                      secretgen.k14s.io/v1alpha1                           true         Password
+rsakeys                                        secretgen.k14s.io/v1alpha1                           true         RSAKey
+sshkeys                                        secretgen.k14s.io/v1alpha1                           true         SSHKey
+clusternetworkpolicies            lacnp        security.antrea.tanzu.vmware.com/v1alpha1            false        ClusterNetworkPolicy
+networkpolicies                   lanp         security.antrea.tanzu.vmware.com/v1alpha1            true         NetworkPolicy
+tiers                             ltr          security.antrea.tanzu.vmware.com/v1alpha1            false        Tier
+antreaclusternetworkpolicystats                stats.antrea.io/v1alpha1                             false        AntreaClusterNetworkPolicyStats
+antreanetworkpolicystats                       stats.antrea.io/v1alpha1                             true         AntreaNetworkPolicyStats
+networkpolicystats                             stats.antrea.io/v1alpha1                             true         NetworkPolicyStats
+antreaclusternetworkpolicystats                stats.antrea.tanzu.vmware.com/v1alpha1               false        AntreaClusterNetworkPolicyStats
+antreanetworkpolicystats                       stats.antrea.tanzu.vmware.com/v1alpha1               true         AntreaNetworkPolicyStats
+networkpolicystats                             stats.antrea.tanzu.vmware.com/v1alpha1               true         NetworkPolicyStats
+csidrivers                                     storage.k8s.io/v1                                    false        CSIDriver
+csinodes                                       storage.k8s.io/v1                                    false        CSINode
+csistoragecapacities                           storage.k8s.io/v1beta1                               true         CSIStorageCapacity
+storageclasses                    sc           storage.k8s.io/v1                                    false        StorageClass
+volumeattachments                              storage.k8s.io/v1                                    false        VolumeAttachment
+controllerinfos                                system.antrea.io/v1beta1                             false        AntreaControllerInfo
+supportbundles                                 system.antrea.io/v1beta1                             false        SupportBundle
+controllerinfos                                system.antrea.tanzu.vmware.com/v1beta1               false        AntreaControllerInfo
+supportbundles                                 system.antrea.tanzu.vmware.com/v1beta1               false        SupportBundle
