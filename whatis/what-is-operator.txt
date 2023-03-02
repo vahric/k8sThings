@@ -1,0 +1,13 @@
+
+
+Create new CRD (Container Resource Defination) new api solve install, maintain, upgrade package or api extender 
+
+Many operators you can find out from link below
+
+https://operatorhub.io/
+
+Videos
+
+https://www.youtube.com/watch?v=i9V4oCa5f9I (IBM Technology)
+
+https://www.youtube.com/watch?v=ha3LjlD6g7g (TechWorld)
