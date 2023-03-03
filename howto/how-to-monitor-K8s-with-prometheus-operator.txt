@@ -1,0 +1,91 @@
+What is Prometheus
+
+Prometheus's multi-dimensional data model, PromQL (the Prometheus querying language), built-in alerting features, a pull vs. push approach, and, of course, the always expanding community are what set it apart from other time-series databases.
+
+What is Grafana
+
+An open-source, cross-platform online application for interactive visualization and analytics is called Grafana.
+
+
+The two projects are now tightly connected, allowing users to quickly operate Prometheus on top of Kubernetes using the Prometheus Operator.
+
+
+We are getting/collecting 3 things ...
+
+Kube-state-metrics
+
+kube-state-metrics (KSM) is a simple service that listens to the Kubernetes API server and generates metrics about the state of the objects
+https://github.com/kubernetes/kube-state-metrics
+
+Node-Exporter
+
+Prometheus exporter for hardware and OS metrics exposed by *NIX kernels, written in Go with pluggable metric collectors.
+https://github.com/prometheus/node_exporter
+
+Lets start
+
+Create Namespace for monitoring things like resource pool in vCenter
+
+kubectl create namespace monitoring
+namespace/monitoring created
+
+*You should have helm client and prometheus community repo
+
+helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
+
+run in shell> helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
+"prometheus-community" has been added to your repositories
+
+run in shell>helm repo update
+Hang tight while we grab the latest from your chart repositories...
+...Successfully got an update from the "prometheus-community" chart repository
+...Successfully got an update from the "bitnami" chart repository
+Update Complete. ⎈Happy Helming!⎈
+
+run in shell> helm repo list
+NAME                	URL                                               
+bitnami             	https://charts.bitnami.com/bitnami                
+prometheus-community	https://prometheus-community.github.io/helm-charts
+
+run in shell> helm install prometheus prometheus-community/kube-prometheus-stack --namespace monitoring
+NAME: prometheus
+LAST DEPLOYED: Fri Mar  3 10:18:28 2023
+NAMESPACE: monitoring
+STATUS: deployed
+REVISION: 1
+NOTES:
+kube-prometheus-stack has been installed. Check its status by running:
+  kubectl --namespace monitoring get pods -l "release=prometheus"
+
+Visit https://github.com/prometheus-operator/kube-prometheus for instructions on how to create & configure Alertmanager and Prometheus instances using the Operator.
+
+
+run in shell> kubectl get svc -n monitoring
+NAME                                      TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)                      AGE
+alertmanager-operated                     ClusterIP   None             <none>        9093/TCP,9094/TCP,9094/UDP   7m3s
+prometheus-grafana                        ClusterIP   100.66.133.110   <none>        80/TCP                       7m14s
+prometheus-kube-prometheus-alertmanager   ClusterIP   100.67.65.204    <none>        9093/TCP                     7m14s
+prometheus-kube-prometheus-operator       ClusterIP   100.69.194.98    <none>        443/TCP                      7m14s
+prometheus-kube-prometheus-prometheus     ClusterIP   100.67.12.93     <none>        9090/TCP                     7m14s
+prometheus-kube-state-metrics             ClusterIP   100.64.143.57    <none>        8080/TCP                     7m14s
+prometheus-operated                       ClusterIP   None             <none>        9090/TCP                     7m3s
+prometheus-prometheus-node-exporter       ClusterIP   100.71.17.167    <none>        9100/TCP                     7m14s
+
+
+Glossary
+
+PromQL (the Prometheus querying language)
+
+Some Notes: 
+
+https://www.javatpoint.com/data-warehouse-what-is-multi-dimensional-data-model
+
+Good to read/watch:
+
+https://www.cncf.io/blog/2021/10/25/prometheus-definitive-guide-part-iii-prometheus-operator/
+https://www.youtube.com/watch?v=1oJXMdVi0mM
+
+Installation Links:
+
+https://www.e2enetworks.com/blog/monitoring-kubernetes-with-prometheus-and-grafana
+https://adamtheautomator.com/prometheus-kubernetes/

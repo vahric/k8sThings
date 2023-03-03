@@ -1,0 +1,19 @@
+
+The kubectl port-forward  command allows you to access internal Kubernetes cluster processes within your local network. This method helps troubleshoot issues and set up services locally without exposing them.
+
+kubectl features a built-in port forwarding functionality. The following is the process of mapping local to cluster ports in Kubernetes:
+
+    A user interacts with Kubernetes using the kubectl command-line tool on their local machine.
+
+    The port-forward command specifies the cluster resource name and defines the port number to port-forward to.
+
+    As a result, the Kubernetes API server establishes a single HTTP connection between the localhost and the resource running on the cluster.
+
+    The user can now directly engage that specific resource to diagnose an issue or debug if necessary.
+
+In some cases, port-forwarding is the only way to access internal cluster resources.
+
+
+run in shell>kubectl port-forward svc/prometheus-kube-prometheus-prometheus -n monitoring 9090
+
+https://phoenixnap.com/kb/kubectl-port-forward

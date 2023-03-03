@@ -1,0 +1,47 @@
+kubectl edit svc prometheus-kube-prometheus-prometheus -n monitoring
+
+# Please edit the object below. Lines beginning with a '#' will be ignored,
+# and an empty file will abort the edit. If an error occurs while saving this file will be
+# reopened with the relevant failures.
+#
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    meta.helm.sh/release-name: prometheus
+    meta.helm.sh/release-namespace: monitoring
+  creationTimestamp: "2023-03-03T07:18:49Z"
+  labels:
+    app: kube-prometheus-stack-prometheus
+    app.kubernetes.io/instance: prometheus
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/part-of: kube-prometheus-stack
+    app.kubernetes.io/version: 45.5.0
+    chart: kube-prometheus-stack-45.5.0
+    heritage: Helm
+    release: prometheus
+    self-monitor: "true"
+  name: prometheus-kube-prometheus-prometheus
+  namespace: monitoring
+  resourceVersion: "1323556"
+  uid: 66c5d63c-2e1b-4b2d-8c7f-5af1e6c28178
+spec:
+  clusterIP: 100.67.12.93
+  clusterIPs:
+  - 100.67.12.93
+  internalTrafficPolicy: Cluster
+  ipFamilies:
+  - IPv4
+  ipFamilyPolicy: SingleStack
+  ports:
+  - name: http-web
+    port: 9090
+    protocol: TCP
+    targetPort: 9090
+  selector:
+    app.kubernetes.io/name: prometheus
+    prometheus: prometheus-kube-prometheus-prometheus
+  sessionAffinity: None
+  type: ClusterIP
+status:
+  loadBalancer: {}
