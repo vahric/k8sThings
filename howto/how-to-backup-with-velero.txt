@@ -27,17 +27,30 @@ velero install --provider aws --bucket velerobackup1 --plugins velero/velero-plu
 *Restic (Filesystem based backup)
 --use-restic
 
+*After Client Version 1.10 no restic looks like :( 
+velero install --provider aws --bucket velerobackup1 --plugins velero/velero-plugin-for-aws:v1.6.0 --bucket velerobackup1 --secret-file ./credentials-velero --use-volume-snapshots=false --backup-location-config region=us-east-1 --use-node-agent --default-volumes-to-fs-backup
+
 velero backup create deneme1            
 Backup request "deneme1" submitted successfully.
 Run `velero backup describe deneme1` or `velero backup logs deneme1` for more details.
 
-vahricmuhtaryan@Vahrics-MacBook-Pro-2 ~ % velero backup get
-NAME      STATUS       ERRORS   WARNINGS   CREATED                         EXPIRES   STORAGE LOCATION   SELECTOR
-deneme1   InProgress   0        0          2023-03-07 15:14:31 +0300 +03   29d       default            <none>
-vahricmuhtaryan@Vahrics-MacBook-Pro-2 ~ % velero backup get
-NAME      STATUS      ERRORS   WARNINGS   CREATED                         EXPIRES   STORAGE LOCATION   SELECTOR
-deneme1   Completed   0        0          2023-03-07 15:14:31 +0300 +03   29d       default            <none>
 
+*Backup site should be availble 
+velero backup-location get
+
+NAME      PROVIDER   BUCKET/PREFIX   PHASE       LAST VALIDATED                  ACCESS MODE   DEFAULT
+default   aws        velerobackup1   Available   2023-03-13 13:55:47 +0300 +03   ReadWrite     true
+
+velero backup create wordpress-backup1 --include-resources pvc,pv --include-namespaces wordpress
+
+Check backups
+
+velero backup get
+NAME                STATUS       ERRORS   WARNINGS   CREATED                         EXPIRES   STORAGE LOCATION   SELECTOR
+wordpress-backup1   InProgress   0        0          2023-03-13 14:14:17 +0300 +03   29d       default            <none>
+vahricmuhtaryan@Vahrics-MacBook-Pro-2 ~ % velero backup get
+NAME                STATUS      ERRORS   WARNINGS   CREATED                         EXPIRES   STORAGE LOCATION   SELECTOR
+wordpress-backup1   Completed   0        0          2023-03-13 14:14:17 +0300 +03   29d       default            <none>
 
 To make specific backup
 
@@ -47,9 +60,18 @@ velero backup create deneme2 --include-namespaces wordpress
 *be aware about cluster-scoped resources, its disabled if you backup namespace specific
 like namespace also resource type could be backed up or both of them namespace + resource or restore resources or namespace or all together 
 
+velero backup create wordpress-backup1 --include-resources pvc,pv --include-namespaces wordpress
+
+*You can use --wait to wait until backup over
+
 Also selector is available, for selector cluster-scoped resources are auto
 
 velero backup create backup3 --selector release=wordpress
+
+
+Check how backup end 
+
+velero describe backup wordpress-backup1 --details
 
 Some Links : 
 

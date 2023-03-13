@@ -11,3 +11,46 @@ prometheus	monitoring	1       	2023-03-03 10:18:28.360623 +0300 +03	deployed	kub
 To uninstall
 
 helm uninstall prometheus -n monitoring
+
+How to install wordpress app
+
+helm install -f wp-values.yaml -n mkt mkt-wp bitnami/wordpress
+
+wp-values.yaml
+
+wordpressUsername: admin
+# Uncomment to define the password or leave commented to auto-generate one
+# wordpressPassword:
+wordpressEmail: user@example.com
+wordpressFirstName: John
+wordpressLastName: Smith
+wordpressBlogName: Awesomic Marketing Frontend
+wordpressScheme: https
+livenessProbe:
+  httpGet:
+    port: https
+    scheme: HTTPS
+readinessProbe:
+  httpGet:
+    port: https
+    scheme: HTTPS
+service:
+  type: ClusterIP
+ingress:
+  enabled: true
+  certManager: true
+  hostname: awesome-domain.com
+  path: /
+  annotations:
+    cert-manager.io/cluster-issuer: letencrypt-prod
+    nginx.ingress.kubernetes.io/proxy-buffer-size: 0
+    nginx.ingress.kubernetes.io/proxy-send-timeout:	600
+    nginx.ingress.kubernetes.io/proxy-read-timeout: 600
+  tls: true
+
+
+--set wordpressPassword=PASSWORD
+--ser wordpressUsername=kullanici_adi
+
+
+Link : https://jmrobles.medium.com/launch-a-wordpress-site-on-kubernetes-in-just-1-minute-193914cb4902
