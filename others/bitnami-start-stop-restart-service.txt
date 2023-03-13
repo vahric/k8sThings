@@ -1,0 +1,4 @@
+
+sudo /opt/bitnami/ctlscript.sh restart
+
+https://docs.bitnami.com/aws/apps/elk/administration/control-services/

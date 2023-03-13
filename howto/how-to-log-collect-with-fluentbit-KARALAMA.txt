@@ -1,0 +1,16 @@
+helm repo add fluent https://fluent.github.io/helm-charts
+helm upgrade --install fluent-bit fluent/fluent-bit
+
+Values Yaml : 
+
+https://github.com/fluent/helm-charts/blob/main/charts/fluent-bit/values.yaml
+
+
+helm repo add elastic https://helm.elastic.co
+
+helm install filebeat elastic/filebeat
+
+
+Links : 
+
+https://docs.fluentbit.io/manual/installation/kubernetes

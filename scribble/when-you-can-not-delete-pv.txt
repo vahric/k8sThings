@@ -1,0 +1,17 @@
+kubectl patch pv pvc-ccdfe297-44c9-4ca7-b44c-415720f428d1 -p '{"metadata":{"finalizers":null}}'
+
+
+kubectl get volumeattachment
+
+
+https://jhooq.com/k8s-delete-pv-pvc/
+
+Delete Reclaim Policy- There are two types of volume provisioning in Kubernetes Static and Dynamic.
+
+    Static Volume Provisioning - You have to manually configure the PV, PVC but when you need to delete both PV, PVC then you must start from PVC and then go for PV.
+    Dynamic Volume Provisioning - You have to set up Storage Class along with PVC and Storage Class will take of dynamic provisioning of PV(Persistent Volume). If you delete the PVC(Persistent Volume Claim) then all the PV(Persistent Volume) provisioned dynamically will be deleted.
+
+Why PV delete stuck Terminating , because you deleted PV before PVC
+
+
+https://jhooq.com/k8s-delete-pv-pvc/

@@ -1,0 +1,5 @@
+https://docs.bitnami.com/virtual-machine/apps/elasticsearch/administration/connect-remotely/
+
+network.host: Specify the hostname or IP address where the server will be accessible. Set it to 0.0.0.0 to listen on every interface.
+
+network.publish_host: Specify the host name that the node publishes to other nodes for communication

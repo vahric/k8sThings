@@ -60,6 +60,17 @@ kube-prometheus-stack has been installed. Check its status by running:
 Visit https://github.com/prometheus-operator/kube-prometheus for instructions on how to create & configure Alertmanager and Prometheus instances using the Operator.
 
 
+Or ***
+
+run in shell> helm install prometheus prometheus-community/kube-prometheus-stack --namespace monitoring --set alertmanager.enabled=false --set grafana.service.type=LoadBalancer
+
+Or ***
+
+Use varaibles file -f
+
+values.yaml
+
+
 run in shell> kubectl get svc -n monitoring
 NAME                                      TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)                      AGE
 alertmanager-operated                     ClusterIP   None             <none>        9093/TCP,9094/TCP,9094/UDP   7m3s
@@ -89,3 +100,4 @@ Installation Links:
 
 https://www.e2enetworks.com/blog/monitoring-kubernetes-with-prometheus-and-grafana
 https://adamtheautomator.com/prometheus-kubernetes/
+https://kong.awsworkshop.io/eks-enterprise-setup/observability/prometheus.html

@@ -1,0 +1,119 @@
+
+Install awscli
+
+brew install awscli
+
+Configure Credentials ... 
+https://docs.aws.amazon.com/cli/latest/reference/configure/
+
+$ aws configure
+aws configure          
+AWS Access Key ID [None]:  YOUR-KEY
+AWS Secret Access Key [None]: Your SECRET
+Default region name [None]: eu-central-1
+Default output format [None]: 
+
+aws configure list                                                   
+      Name                    Value             Type    Location
+      ----                    -----             ----    --------
+   profile                <not set>             None    None
+access_key     ****************RDE7 shared-credentials-file    
+secret_key     ****************g9Pb shared-credentials-file    
+    region             eu-central-1      config-file    ~/.aws/config
+
+
+Links : 
+awscli basics Configuration basics
+https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-quickstart.html
+
+How to access/create your secret
+https://aws.amazon.com/blogs/security/wheres-my-secret-access-key/
+
+How to access s3 buckets...
+https://docs.aws.amazon.com/AmazonS3/latest/userguide/access-bucket-intro.html
+
+
+
+aws s3api create-bucket --bucket velerobackup1 --region us-east-1    
+{
+    "Location": "/velerobackup1"
+}
+
+aws iam create-user --user-name velero
+{
+    "User": {
+        "Path": "/",
+        "UserName": "velero",
+        "UserId": "AIDAZEIUCJZJDEMENQUBI",
+        "Arn": "arn:aws:iam::627644190290:user/velero",
+        "CreateDate": "2023-03-07T11:38:15+00:00"
+    }
+}
+
+vi velero-policy.json
+
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "ec2:DescribeVolumes",
+                "ec2:DescribeSnapshots",
+                "ec2:CreateTags",
+                "ec2:CreateVolume",
+                "ec2:CreateSnapshot",
+                "ec2:DeleteSnapshot"
+            ],
+            "Resource": "*"
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "s3:GetObject",
+                "s3:DeleteObject",
+                "s3:PutObject",
+                "s3:AbortMultipartUpload",
+                "s3:ListMultipartUploadParts"
+            ],
+            "Resource": [
+                "arn:aws:s3:::${BUCKET}/*"
+            ]
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "s3:ListBucket"
+            ],
+            "Resource": [
+                "arn:aws:s3:::${BUCKET}"
+            ]
+        }
+    ]
+}
+
+aws iam put-user-policy \
+  --user-name velero \
+  --policy-name velero \
+  --policy-document file://velero-policy.json
+
+aws iam create-access-key --user-name velero
+
+{
+    "AccessKey": {
+        "UserName": "velero",
+        "AccessKeyId": "AccessKeyeOfVelero",
+        "Status": "Active",
+        "SecretAccessKey": "SecretKeyOfVelero",
+        "CreateDate": "2023-03-07T11:53:28+00:00"
+    }
+}
+
+vi credentials-velero
+
+[default]
+aws_access_key_id=<AWS_ACCESS_KEY_ID>
+aws_secret_access_key=<AWS_SECRET_ACCESS_KEY>
+
+Other Links: 
+https://github.com/vmware-tanzu/velero-plugin-for-aws

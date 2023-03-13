@@ -1,0 +1,17 @@
+kubectl delete namespace/velero clusterrolebinding/velero
+namespace "velero" deleted
+clusterrolebinding.rbac.authorization.k8s.io "velero" deleted
+
+
+kubectl delete crds -l component=velero
+customresourcedefinition.apiextensions.k8s.io "backuprepositories.velero.io" deleted
+customresourcedefinition.apiextensions.k8s.io "backups.velero.io" deleted
+customresourcedefinition.apiextensions.k8s.io "backupstoragelocations.velero.io" deleted
+customresourcedefinition.apiextensions.k8s.io "deletebackuprequests.velero.io" deleted
+customresourcedefinition.apiextensions.k8s.io "downloadrequests.velero.io" deleted
+customresourcedefinition.apiextensions.k8s.io "podvolumebackups.velero.io" deleted
+customresourcedefinition.apiextensions.k8s.io "podvolumerestores.velero.io" deleted
+customresourcedefinition.apiextensions.k8s.io "restores.velero.io" deleted
+customresourcedefinition.apiextensions.k8s.io "schedules.velero.io" deleted
+customresourcedefinition.apiextensions.k8s.io "serverstatusrequests.velero.io" deleted
+customresourcedefinition.apiextensions.k8s.io "volumesnapshotlocations.velero.io" deleted

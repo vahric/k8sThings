@@ -1,0 +1,5 @@
+
+To delete
+
+run in shell> kubectl delete pod fluent-bit-9z85k -n logs  
+

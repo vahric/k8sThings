@@ -1,0 +1,34 @@
+Correct Explanation Number 4 
+
+https://stackoverflow.com/questions/54629660/kubernetes-how-do-i-delete-pv-in-the-correct-manner
+
+the PVC and PV are stuck in terminating state because of finalizers. Finalizers are guard rails in k8s to avoid accidental deletion of resources.
+
+Your observations are correct and this is how Kubernetes works. But the order in which you deleted the resources are incorrect.
+
+This is what happened,
+
+PV is stuck terminating because PVC still exists. PVC is stuck terminating because Statefulsets(pods) are still using the volumes. (volumes are attached to the nodes and mounted to the pods). As soon as you deleted the pods/STS, since volumes are no more in use, PVC and PV got successfully removed.
+
+
+kubectl delete pvc data-p-0
+
+kubectl delete pv  <pv-name>  --grace-period=0 --force
+
+
+
+kubectl patch pv {PVC_NAME} -p '{"metadata":{"finalizers":null}}'
+
+kubectl delete pv {PVC_NAME}
+
+
+PV: Persistent Volume
+PVC: Persistent Volume Clame
+Pod -> PVC -> PV -> Host Machine
+First find the pvs: kubectl get pv -n {namespace}
+Then delete the pv in order set status to Terminating
+kubectl delete pv {PV_NAME}
+
+Then patch it to set the status of pvc to Lost: kubectl patch pv {PV_NAME} -p '{"metadata":{"finalizers":null}}'
+Then get pvc volumes: kubectl get pvc -n storage
+Then you can delete the pvc: kubectl delete pvc {PVC_NAME} -n {namespace}

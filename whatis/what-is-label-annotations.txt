@@ -1,0 +1,4 @@
+K8s labels are metadata
+Labels are in the format of key and value string pairs, where each key should be unique
+
+kubectl get node -o json | jq .metadata.labels 

@@ -1,0 +1,5 @@
+https://www.humblec.com/persistent-volume-and-claim-pv-and-pvc-status-in-kubernetes/
+
+PVC : Pending, Bound, Lost
+
+Lost PVC lost underlying Persisten Volume

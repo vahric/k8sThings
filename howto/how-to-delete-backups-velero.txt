@@ -1,0 +1,8 @@
+To delete backups 
+
+velere backup get (to see what you have)
+
+velero backup delete deneme1 (to delete related backup))
+Are you sure you want to continue (Y/N)? Y
+Request to delete backup "deneme1" submitted successfully.
+The backup will be fully deleted after all associated data (disk snapshots, backup files, restores) are removed.

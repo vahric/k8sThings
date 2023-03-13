@@ -1,0 +1,57 @@
+Supported Providers
+https://github.com/vmware-tanzu/velero/blob/main/site/content/docs/v1.5/supported-providers.md
+
+Plugins
+https://velero.io/plugins/
+
+AWS Plugin Info : https://github.com/vmware-tanzu/velero-plugin-for-aws
+AWS Region Name : https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.RegionsAndAvailabilityZones.html
+AWS Endpoint and Quotas : https://docs.aws.amazon.com/general/latest/gr/s3.html
+
+Install velero client on mac
+
+brew install velero
+
+Check version of client .... 
+
+velero version --client-only
+
+First create bucket on aws , you should have it .... 
+
+Install velero server part (K8s Target)
+https://github.com/vmware-tanzu/velero-plugin-for-aws
+*Another helm method to install https://artifacthub.io/packages/helm/vmware-tanzu/velero
+
+velero install --provider aws --bucket velerobackup1 --plugins velero/velero-plugin-for-aws:v1.6.0 --bucket velerobackup1 --secret-file ./credentials-velero --use-volume-snapshots=false --backup-location-config region=us-east-1
+
+*Restic (Filesystem based backup)
+--use-restic
+
+velero backup create deneme1            
+Backup request "deneme1" submitted successfully.
+Run `velero backup describe deneme1` or `velero backup logs deneme1` for more details.
+
+vahricmuhtaryan@Vahrics-MacBook-Pro-2 ~ % velero backup get
+NAME      STATUS       ERRORS   WARNINGS   CREATED                         EXPIRES   STORAGE LOCATION   SELECTOR
+deneme1   InProgress   0        0          2023-03-07 15:14:31 +0300 +03   29d       default            <none>
+vahricmuhtaryan@Vahrics-MacBook-Pro-2 ~ % velero backup get
+NAME      STATUS      ERRORS   WARNINGS   CREATED                         EXPIRES   STORAGE LOCATION   SELECTOR
+deneme1   Completed   0        0          2023-03-07 15:14:31 +0300 +03   29d       default            <none>
+
+
+To make specific backup
+
+https://velero.io/docs/v1.4/resource-filtering/
+
+velero backup create deneme2 --include-namespaces wordpress
+*be aware about cluster-scoped resources, its disabled if you backup namespace specific
+like namespace also resource type could be backed up or both of them namespace + resource or restore resources or namespace or all together 
+
+Also selector is available, for selector cluster-scoped resources are auto
+
+velero backup create backup3 --selector release=wordpress
+
+Some Links : 
+
+Example Tanzu Backup with MINIO and Velero
+https://rudimartinsen.com/2021/10/21/tanzu-backup-restore/

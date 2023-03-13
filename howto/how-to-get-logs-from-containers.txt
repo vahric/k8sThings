@@ -1,0 +1,11 @@
+
+To get logs from container live use command bellow 
+
+run in shell> kubectl logs fluent-bit-zzzg6 -n logs
+
+[2023/03/04 09:02:27] [ warn] [engine] failed to flush chunk '1-1677886580.295772328.flb', retry in 1695 seconds: task_id=9, input=tail.0 > output=es.0 (out_id=0)
+[2023/03/04 09:02:38] [ warn] [engine] failed to flush chunk '1-1677862389.756739760.flb', retry in 1395 seconds: task_id=1, input=tail.0 > output=es.0 (out_id=0)
+[2023/03/04 09:04:13] [ warn] [engine] failed to flush chunk '1-1677869862.236010149.flb', retry in 1843 seconds: task_id=4, input=tail.0 > output=es.0 (out_id=0)
+
+
+helm install --name filebeat --version 7.9.3 elastic/filebeat

@@ -1,0 +1,19 @@
+to get list of buckets 
+
+
+aws s3api list-buckets
+{
+    "Buckets": [
+        {
+            "Name": "velerobackup1",
+            "CreationDate": "2023-03-07T11:36:29+00:00"
+        }
+    ],
+    "Owner": {
+        "ID": "9108dda2df5e920cce047d2dc7218e8e426a9c1a916a2ec4fb50948d8fe306c3"
+    }
+}
+
+to get content
+
+aws s3api list-objects --bucket velerobackup1

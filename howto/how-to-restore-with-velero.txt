@@ -1,0 +1,24 @@
+
+velero backup get                    
+NAME      STATUS      ERRORS   WARNINGS   CREATED                         EXPIRES   STORAGE LOCATION   SELECTOR
+deneme1   Completed   0        0          2023-03-07 15:14:31 +0300 +03   28d       default            <none>
+deneme2   Completed   0        0          2023-03-08 12:14:32 +0300 +03   29d       default            <none>
+
+To Restore
+
+velero restore create --from-backup deneme2
+
+To see whats happening
+
+velero get restore                         
+
+NAME                     BACKUP    STATUS      STARTED                         COMPLETED                       ERRORS   WARNINGS   CREATED                         SELECTOR
+deneme2-20230308173727   deneme2   Completed   2023-03-08 17:37:27 +0300 +03   2023-03-08 17:37:31 +0300 +03   0        1          2023-03-08 17:37:27 +0300 +03   <none>
+
+Whats is WARNINGS
+
+velero restore describe deneme2-20230308174832
+
+Whats is full log
+
+velero restore logs deneme2-20230308174832
