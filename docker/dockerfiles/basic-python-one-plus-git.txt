@@ -1,0 +1,32 @@
+#imaged from dockerhub https://hub.docker.com/_/python
+
+FROM python:3
+
+# mkdir and cd implicitly
+WORKDIR /tmp
+
+# Our app need flask
+COPY requirements.txt ./
+RUN pip install --no-cache-dir -r requirements.txt
+#https://note.nkmk.me/en/python-pip-install-requirements/
+
+#Copy file from docker project folder to container /tmp folder
+RUN git clone https://github.com/vahric/pythoncicdtest.git
+
+#Thus, Writing EXPOSE in your Dockerfile, is merely a hint that a certain port is useful. Docker won’t do anything with that information by itself.
+EXPOSE 5000
+
+#Need to execute python script when container come up
+CMD [ "python", "/tmp/pythoncicdtest/firstflaskfiles/flaskapi.py" ]
+
+#to build execute in cli
+#docker build -t python-cicd-api-test:0.1 . 
+#The . at the end of the docker build command tells Docker that it should look for the Dockerfile in the current directory.
+#https://docs.docker.com/engine/reference/commandline/build/
+
+#Here consider to add parameter to docker build, because of using git clone, docker build did not understand git repo updates
+#Maybe need time or need to set some parameter for it for example --no-cache here 
+#docker build --no-cache -t python-cicd-api-test:0.6 .
+
+#Use -p parameter when execute docker run
+#docker run -p 19000:5000 6c382bbb3527 
